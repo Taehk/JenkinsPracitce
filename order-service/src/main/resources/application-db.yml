@@ -1,0 +1,4 @@
+dbUrl: jdbc:mysql://localhost:3306/msa_db
+dbName: root
+dbPassword: 1234
+driver-class-name: com.mysql.cj.jdbc.Driver

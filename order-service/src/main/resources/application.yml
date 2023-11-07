@@ -1,0 +1,29 @@
+server:
+  port: 0
+
+spring:
+  profiles:
+    active: db
+  application:
+    name: Order-Service
+  datasource:
+    url: ${dbUrl}
+    username: ${dbName}
+    password: ${dbPassword}
+    driver-class-name: ${driver-class-name}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

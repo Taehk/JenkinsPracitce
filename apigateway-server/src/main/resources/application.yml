@@ -1,0 +1,48 @@
+server:
+  port: 8000  # 게이트웨이의 경우는 당장 랜덤 포트번호를 사용할 필요가 없다
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      default-filters:  # 전역필터 세팅
+        - name: GlobalFilter
+          args:
+            message: Global Filter Default Message Test
+            pre: true
+            post: true
+      routes:
+        - id: first-service
+          uri: lb://First-Service # Application name이 First-Service인 인스턴스들을 로드밸런싱
+          predicates:
+            - Path=/first-service/**
+          filters:
+            - CustomFilter
+            - LogFilter
+        - id: second-service
+          uri: lb://Second-Service
+          predicates:
+            - Path=/second-service/**
+          filters:
+            - AddRequestHeader=s-req,s-req-v
+            - AddResponseHeader=s-res,s-res-v
+        - id: user-service
+          uri: lb://User-Service
+          predicates:
+            - Path=/user-service/**
+        - id: item-service
+          uri: lb://Item-Service
+          predicates:
+            - Path=/item-service/**
+        - id: order-service
+          uri: lb://Order-Service
+          predicates:
+            - Path=/order-service/**
+eureka:
+  client:
+    register-with-eureka: true  # 유레카 서버에 등록
+    fetch-registry: true  # 유레카 서버에서 서버 상태 지속적 감시 허락
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka # 유레카 서버의 주소
+  instance: # 인스턴스 식별용 아이디 부여
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

@@ -1,0 +1,7 @@
+# bootstrap.yml
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8888
+      name: db,eureka
+#      git repo에 있는 yml 이름 (profile 부분 제외)

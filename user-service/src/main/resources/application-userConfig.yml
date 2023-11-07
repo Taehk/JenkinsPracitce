@@ -1,0 +1,2 @@
+appName: User-Service
+dbUrl: jdbc:mysql://localhost:3306/msa_db

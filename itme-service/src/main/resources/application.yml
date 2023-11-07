@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: mysql, itemConfig
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+# rabbitmq 설정
+## host = IP주소, port번호 = 관리페이지가 아닌 코어페이지(5672)
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 5672
