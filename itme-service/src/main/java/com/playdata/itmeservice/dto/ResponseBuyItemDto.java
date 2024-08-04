@@ -21,6 +21,7 @@ public class ResponseBuyItemDto {
 
     private List<Order> orderList = List.of();
 
+
     public ResponseBuyItemDto(Item item) {
         productId = item.getProductId();
         productName = item.getProductName();

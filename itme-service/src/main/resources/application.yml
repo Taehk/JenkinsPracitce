@@ -10,8 +10,18 @@ spring:
     show-sql: true
 # rabbitmq 설정
 ## host = IP주소, port번호 = 관리페이지가 아닌 코어페이지(5672)
-  rabbitmq:
-    host: localhost
-    username: guest
-    password: guest
-    port: 5672
+#  rabbitmq:
+#    host: localhost
+#    username: guest
+#    password: guest
+#    port: 5672
+
+management.endpoints.web.exposure.include: '*'
+management.endpoint.health.show-details: always
+management:
+    metrics:
+      tags:
+        application: ${spring.application.name}
+    health:
+      diskspace:
+        enabled: false
