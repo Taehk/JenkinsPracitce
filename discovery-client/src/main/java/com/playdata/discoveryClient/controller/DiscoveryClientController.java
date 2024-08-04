@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/discovery-api")
-public class DiscoveryCleintController {
+public class DiscoveryClientController {
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<String> healthCheck(){
         return ResponseEntity.ok("Discovey Clinet Server Health Check");
